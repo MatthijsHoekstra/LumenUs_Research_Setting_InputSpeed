@@ -24,7 +24,6 @@ class LoadBar {
   }
 
   void display() {
-
     pushMatrix();
     translate(this.tubeModulus * (numLEDsPerTube * rectWidth) + (this.tubeModulus * 20 + 20), this.tripodNumber * 21 + 21);
     pushStyle();

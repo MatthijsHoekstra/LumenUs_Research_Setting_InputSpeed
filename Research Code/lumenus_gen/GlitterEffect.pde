@@ -6,7 +6,7 @@ class GlitterEffect {
 
   int numberOfGlitters = 100;
 
-  int startTime, livingTime;
+  private int startTime, livingTime;
 
   GlitterEffect(int tubeModulus, int tripodNumber) {
     this.tubeModulus = tubeModulus;

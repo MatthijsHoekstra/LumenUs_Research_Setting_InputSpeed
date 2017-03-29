@@ -1,6 +1,18 @@
 import AULib.*;
 //import spout.*;
 
+
+
+//----------------------------------------------------------------------------------------------------------------------------
+
+int endAnimationSetting = 0; //Could be 0 or 1. 0 - End-animation starts after feedback time, 1 - End-animation starts after user releases tube
+
+int feedbackSetting = 0; //This one is for controlling which feedback speed is set - will be connected to array
+//Check drive for corresponding speed
+
+
+//----------------------------------------------------------------------------------------------------------------------------
+
 int numTripods = 24;
 int numTubes = numTripods * 3;
 int numLEDsPerTube = 56;
@@ -50,7 +62,7 @@ void setup() {
   //}
 
 
- // spout = new Spout(this);
+  // spout = new Spout(this);
 
   //String lines[] = loadStrings("data/logNumPeople/numberPersons.txt");
 
@@ -81,9 +93,32 @@ void draw() {
 
   selectingSystem();
 
+  researchOptions();
+
   drawRaster();
 
   //spout.sendTexture();
+}
+
+void researchOptions() {
+
+  switch(feedbackSetting) {
+  case 0:
+
+    break;
+
+  case 1:
+
+    break;
+
+  case 2:
+
+    break;
+
+  case 3:
+
+    break;
+  }
 }
 
 void keyPressed() {
@@ -140,9 +175,9 @@ void keyPressed() {
 
     println("end file");
   }
-  
-  if (key == 'q'){
-   tubes[tubeNumber].addGlitter(); 
+
+  if (key == 'q') {
+    tubes[tubeNumber].addGlitter();
   }
 }
 
