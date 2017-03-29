@@ -55,21 +55,21 @@ void setup() {
 
   spout = new Spout(this);
 
-  String lines[] = loadStrings("data/logNumPeople/numberPersons.txt");
+  //String lines[] = loadStrings("data/logNumPeople/numberPersons.txt");
 
-  int numberOfTestPersons = parseInt(lines[0]);
+  //int numberOfTestPersons = parseInt(lines[0]);
 
-  int numberTestPerson = numberOfTestPersons + 1;
+  //int numberTestPerson = numberOfTestPersons + 1;
 
-  String filename = numberTestPerson + "_" + hour() + minute() + "_timing_research.txt";
+  //String filename = numberTestPerson + "_" + hour() + minute() + "_timing_research.txt";
 
-  logTestPerson = createWriter("data/" + filename); 
+  //logTestPerson = createWriter("data/" + filename); 
 
-  numberOfTotalPersons = createWriter("data/numberPersons.txt");
+  //numberOfTotalPersons = createWriter("data/numberPersons.txt");
 
-  numberOfTotalPersons.print(numberOfTestPersons + 1);
-  numberOfTotalPersons.flush(); // Writes the remaining data to the file
-  numberOfTotalPersons.close(); // Finishes the file
+  //numberOfTotalPersons.print(numberOfTestPersons + 1);
+  //numberOfTotalPersons.flush(); // Writes the remaining data to the file
+  //numberOfTotalPersons.close(); // Finishes the file
 }
 
 void draw() {
