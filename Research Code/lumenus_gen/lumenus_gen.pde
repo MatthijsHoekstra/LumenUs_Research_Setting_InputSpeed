@@ -1,8 +1,5 @@
-//Max
-//Janita
-
 import AULib.*;
-import spout.*;
+//import spout.*;
 
 int numTripods = 24;
 int numTubes = numTripods * 3;
@@ -19,7 +16,7 @@ int selectedTube, tubeNumber;
 
 Tube[] tubes = new Tube[numTubes];
 
-Spout spout;
+//Spout spout;
 
 PrintWriter logTestPerson;
 PrintWriter numberOfTotalPersons;
@@ -53,7 +50,7 @@ void setup() {
   //}
 
 
-  spout = new Spout(this);
+ // spout = new Spout(this);
 
   //String lines[] = loadStrings("data/logNumPeople/numberPersons.txt");
 
@@ -84,9 +81,9 @@ void draw() {
 
   selectingSystem();
 
-  //drawRaster();
+  drawRaster();
 
-  spout.sendTexture();
+  //spout.sendTexture();
 }
 
 void keyPressed() {
