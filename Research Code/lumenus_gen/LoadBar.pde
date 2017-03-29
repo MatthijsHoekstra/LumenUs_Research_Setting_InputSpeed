@@ -1,6 +1,6 @@
 //Standard setup for a class
 
-class Block {
+class LoadBar {
 
   int tubeModulus;
   int tripodNumber;
@@ -10,14 +10,18 @@ class Block {
   float widthBar;
   float speed = 8.4;
   int outcomeSpeed;
-  int startTime ;
+  int startTime;
+  
+  int livingTime;
 
-  Block(int tubeModulus, int tripodNumber, int touchLocation) {
+  LoadBar(int tubeModulus, int tripodNumber, int touchLocation) {
     this.tubeModulus = tubeModulus;
     this.tripodNumber = tripodNumber;
     this.touchLocation = touchLocation;
+    
+    startTime = millis();
+    livingTime = 10000;
   }
-
 
   void display() {
 
@@ -51,5 +55,13 @@ class Block {
 
     popStyle();
     popMatrix();
+  }
+
+  boolean timeFinished() {
+    if (millis() > startTime + livingTime) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

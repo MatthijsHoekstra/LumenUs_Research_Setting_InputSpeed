@@ -10,7 +10,7 @@ class Tube {
   private int tubeModulus;
   private int tripodNumber;
 
-  ArrayList<Block> blocks = new ArrayList<Block>();
+  ArrayList<LoadBar> LoadBars = new ArrayList<LoadBar>();
   ArrayList<Timer> timers = new ArrayList<Timer>();
 
   ArrayList<GlitterEffect> glitterEffects = new ArrayList<GlitterEffect>();
@@ -28,11 +28,11 @@ class Tube {
 
   void isTouched(int touchLocation) {
     if (touchLocation == 0 && effectSide0 == false) {
-      blocks.add(new Block(tubeModulus, tripodNumber, 0));
+      LoadBars.add(new LoadBar(tubeModulus, tripodNumber, 0));
     }
 
     if (touchLocation == 1 && effectSide1 == false) {
-      blocks.add(new Block(tubeModulus, tripodNumber, 1));
+      LoadBars.add(new LoadBar(tubeModulus, tripodNumber, 1));
     }
 
     if (touchLocation == 0 && effectSide0 == false) {
@@ -68,11 +68,11 @@ class Tube {
       }
     }
 
-    for (int i = 0; i < blocks.size(); i++) {
-      Block block = blocks.get(i);
+    for (int i = 0; i < LoadBars.size(); i++) {
+      LoadBar block = LoadBars.get(i);
 
       if (block.touchLocation == touchLocation) {
-        blocks.remove(i);
+        LoadBars.remove(i);
 
         if (touchLocation == 0) {
           effectSide0 = false;
@@ -86,8 +86,8 @@ class Tube {
 
   // Executed every frame, for updating continiously things
   void update() {
-    for (int i = 0; i < blocks.size(); i++) {
-      Block block = blocks.get(i);
+    for (int i = 0; i < LoadBars.size(); i++) {
+      LoadBar block = LoadBars.get(i);
 
       block.display();
     }
