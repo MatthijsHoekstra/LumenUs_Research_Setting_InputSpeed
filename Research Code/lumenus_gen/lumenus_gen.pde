@@ -28,6 +28,10 @@ int selectedTube, tubeNumber;
 
 Tube[] tubes = new Tube[numTubes];
 
+
+//2D array which stores the broken tube: brokenTubes{{tripod}, {tube}, {side}}
+int[][] brokenTubes = {{}, {}, {}};
+
 //Spout spout;
 
 PrintWriter logTestPerson;
@@ -97,7 +101,11 @@ void draw() {
 
   drawRaster();
 
+  //brokenTubes();
+
   //spout.sendTexture();
+
+  println(y);
 }
 
 void researchOptions() {
