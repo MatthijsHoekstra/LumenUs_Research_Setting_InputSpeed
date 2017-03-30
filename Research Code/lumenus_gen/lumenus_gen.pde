@@ -95,36 +95,36 @@ void setup() {
   // knoppen
   cp5.addButton("1,5 sec")
     .setValue(1.5)
-    .setPosition(100, height*0.65)
+    .setPosition(100, height-100)
     .setSize(100, 19)
     ;
 
   cp5.addButton("5 sec")
     .setValue(5)
-    .setPosition(205, height*0.65)
+    .setPosition(205, height-100)
     .setSize(100, 19)
     ;
 
   cp5.addButton("8 sec")
     .setValue(8)
-    .setPosition(310, height*0.65)
+    .setPosition(310, height-100)
     .setSize(100, 19)
     ;
 
   cp5.addButton("15 sec")
     .setValue(15)
-    .setPosition(415, height*0.65)
+    .setPosition(415, height-100)
     .setSize(100, 19)
     ;
     
     // text input
   cp5.addTextfield("group")
-  .setPosition(100, height*0.7)
+  .setPosition(100, height-200)
   .setSize(100, 50)
   .setAutoClear(false);
   
   cp5.addBang("Submit")
-  .setPosition(220, height*0.7)
+  .setPosition(220, height-200)
   .setSize(100, 50);
 
   //numberOfTotalPersons.print(numberOfTestPersons + 1);
