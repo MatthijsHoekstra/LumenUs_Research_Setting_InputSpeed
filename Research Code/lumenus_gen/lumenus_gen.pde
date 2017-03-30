@@ -2,9 +2,7 @@
 
 import AULib.*;
 //import spout.*;
-<<<<<<< HEAD
 import controlP5.*;
-=======
 
 
 
@@ -17,7 +15,6 @@ int feedbackSetting = 0; //This one is for controlling which feedback speed is s
 
 
 //----------------------------------------------------------------------------------------------------------------------------
->>>>>>> origin/master
 
 int numTripods = 24;
 int numTubes = numTripods * 3;
@@ -34,13 +31,9 @@ int selectedTube, tubeNumber;
 
 Tube[] tubes = new Tube[numTubes];
 
-<<<<<<< HEAD
-=======
-
 //2D array which stores the broken tube: brokenTubes{{tripod}, {tube}, {side}}
 int[][] brokenTubes = {{}, {}, {}};
 
->>>>>>> origin/master
 //Spout spout;
 
 PrintWriter logTestPerson;
@@ -78,12 +71,8 @@ void setup() {
   //  }
   //}
 
-
-<<<<<<< HEAD
   //spout = new Spout(this);
-=======
   // spout = new Spout(this);
->>>>>>> origin/master
 
   //String lines[] = loadStrings("data/logNumPeople/numberPersons.txt");
 
@@ -97,10 +86,9 @@ void setup() {
 
   //numberOfTotalPersons = createWriter("data/numberPersons.txt");
 
-<<<<<<< HEAD
-  numberOfTotalPersons.print(numberOfTestPersons + 1);
-  numberOfTotalPersons.flush(); // Writes the remaining data to the file
-  numberOfTotalPersons.close(); // Finishes the file
+  //numberOfTotalPersons.print(numberOfTestPersons + 1);
+  //numberOfTotalPersons.flush(); // Writes the remaining data to the file
+  //numberOfTotalPersons.close(); // Finishes the file
   
   cp5 = new ControlP5(this);
 
@@ -138,12 +126,10 @@ void setup() {
   cp5.addBang("Submit")
   .setPosition(220, height*0.7)
   .setSize(100, 50);
-  
-=======
+
   //numberOfTotalPersons.print(numberOfTestPersons + 1);
   //numberOfTotalPersons.flush(); // Writes the remaining data to the file
   //numberOfTotalPersons.close(); // Finishes the file
->>>>>>> origin/master
 }
 
 void draw() {
@@ -158,11 +144,9 @@ void draw() {
 
   selectingSystem();
 
-<<<<<<< HEAD
   drawRaster();
 
   //spout.sendTexture();
-=======
   researchOptions();
 
   drawRaster();
@@ -193,7 +177,6 @@ void researchOptions() {
 
     break;
   }
->>>>>>> origin/master
 }
 
 void keyPressed() {
