@@ -1,6 +1,23 @@
+//test
+
 import AULib.*;
 //import spout.*;
+<<<<<<< HEAD
 import controlP5.*;
+=======
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------
+
+int endAnimationSetting = 0; //Could be 0 or 1. 0 - End-animation starts after feedback time, 1 - End-animation starts after user releases tube
+
+int feedbackSetting = 0; //This one is for controlling which feedback speed is set - will be connected to array
+//Check drive for corresponding speed
+
+
+//----------------------------------------------------------------------------------------------------------------------------
+>>>>>>> origin/master
 
 int numTripods = 24;
 int numTubes = numTripods * 3;
@@ -17,6 +34,13 @@ int selectedTube, tubeNumber;
 
 Tube[] tubes = new Tube[numTubes];
 
+<<<<<<< HEAD
+=======
+
+//2D array which stores the broken tube: brokenTubes{{tripod}, {tube}, {side}}
+int[][] brokenTubes = {{}, {}, {}};
+
+>>>>>>> origin/master
 //Spout spout;
 
 PrintWriter logTestPerson;
@@ -55,20 +79,25 @@ void setup() {
   //}
 
 
+<<<<<<< HEAD
   //spout = new Spout(this);
+=======
+  // spout = new Spout(this);
+>>>>>>> origin/master
 
-  String lines[] = loadStrings("data/logNumPeople/numberPersons.txt");
+  //String lines[] = loadStrings("data/logNumPeople/numberPersons.txt");
 
-  int numberOfTestPersons = parseInt(lines[0]);
+  //int numberOfTestPersons = parseInt(lines[0]);
 
-  int numberTestPerson = numberOfTestPersons + 1;
+  //int numberTestPerson = numberOfTestPersons + 1;
 
-  String filename = numberTestPerson + "_" + hour() + minute() + "_timing_research.txt";
+  //String filename = numberTestPerson + "_" + hour() + minute() + "_timing_research.txt";
 
-  logTestPerson = createWriter("data/" + filename); 
+  //logTestPerson = createWriter("data/" + filename); 
 
-  numberOfTotalPersons = createWriter("data/numberPersons.txt");
+  //numberOfTotalPersons = createWriter("data/numberPersons.txt");
 
+<<<<<<< HEAD
   numberOfTotalPersons.print(numberOfTestPersons + 1);
   numberOfTotalPersons.flush(); // Writes the remaining data to the file
   numberOfTotalPersons.close(); // Finishes the file
@@ -110,6 +139,11 @@ void setup() {
   .setPosition(220, height*0.7)
   .setSize(100, 50);
   
+=======
+  //numberOfTotalPersons.print(numberOfTestPersons + 1);
+  //numberOfTotalPersons.flush(); // Writes the remaining data to the file
+  //numberOfTotalPersons.close(); // Finishes the file
+>>>>>>> origin/master
 }
 
 void draw() {
@@ -124,9 +158,42 @@ void draw() {
 
   selectingSystem();
 
+<<<<<<< HEAD
   drawRaster();
 
   //spout.sendTexture();
+=======
+  researchOptions();
+
+  drawRaster();
+
+  //brokenTubes();
+
+  //spout.sendTexture();
+
+  println(y);
+}
+
+void researchOptions() {
+
+  switch(feedbackSetting) {
+  case 0:
+
+    break;
+
+  case 1:
+
+    break;
+
+  case 2:
+
+    break;
+
+  case 3:
+
+    break;
+  }
+>>>>>>> origin/master
 }
 
 void keyPressed() {
@@ -183,9 +250,9 @@ void keyPressed() {
 
     println("end file");
   }
-  
-  if (key == 'q'){
-   tubes[tubeNumber].addGlitter(); 
+
+  if (key == 'q') {
+    tubes[tubeNumber].addGlitter();
   }
 }
 

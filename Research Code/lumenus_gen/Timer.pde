@@ -4,7 +4,7 @@ class Timer{
   int tripodNumber;
   int sideTouch;
   
-  int timeStart;
+  private int timeStart;
   
   Timer(int tubeModulus, int tripodNumber, int sideTouch){
    this.tubeModulus = tubeModulus;
@@ -21,7 +21,7 @@ class Timer{
     
     int totalTouchTime = timeEnd - timeStart;
     
-    logTestPerson.println(totalTouchTime);  
+    //logTestPerson.println(totalTouchTime);  
     
     println("touch logged, time touched: " + totalTouchTime);
   }

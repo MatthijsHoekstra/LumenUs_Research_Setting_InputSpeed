@@ -65,13 +65,33 @@ void selectingSystem() {
   //Create rectangle for indicating which tube / tripod is selected
   pushMatrix();
   translate(currentSelectedTube * (numLEDsPerTube * rectWidth) + (currentSelectedTube * 20 + 20), currentSelectedTripod * 21 + 21); 
-  
+
   pushStyle();
   noFill();
-  
+
   stroke(0, 255, 0);
   rect(x-5, y-5, tubeLength+8, rectHeight+9);
 
   popStyle();
   popMatrix();
+}
+
+void brokenTubes() {
+  for (int i = 0; i < brokenTubes.length; i++) {
+    
+    int tripod = brokenTubes[0][i];
+    int tube = brokenTubes[1][i];
+    int touchSide = brokenTubes[2][i];
+
+    pushMatrix();
+    translate(tube * (numLEDsPerTube * rectWidth) + (tube * 20 + 20), tripod * 21 + 21); 
+    pushStyle();
+
+    noStroke();
+    fill(255, 0, 0);
+    rect((tubeLength/2)*touchSide , 0, tubeLength/2, rectHeight);
+
+    popStyle();
+    popMatrix();
+  }
 }

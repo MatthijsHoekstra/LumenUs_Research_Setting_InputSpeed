@@ -10,7 +10,7 @@ class Tube {
   private int tubeModulus;
   private int tripodNumber;
 
-  ArrayList<Block> blocks = new ArrayList<Block>();
+  ArrayList<LoadBar> LoadBars = new ArrayList<LoadBar>();
   ArrayList<Timer> timers = new ArrayList<Timer>();
 
   ArrayList<GlitterEffect> glitterEffects = new ArrayList<GlitterEffect>();
@@ -27,22 +27,19 @@ class Tube {
   //Event when tube is touched
 
   void isTouched(int touchLocation) {
-    if (touchLocation == 0 && effectSide0 == false) {
-      blocks.add(new Block(tubeModulus, tripodNumber, 0));
-    }
-
-    if (touchLocation == 1 && effectSide1 == false) {
-      blocks.add(new Block(tubeModulus, tripodNumber, 1));
-    }
 
     if (touchLocation == 0 && effectSide0 == false) {
       timers.add(new Timer(tubeModulus, tripodNumber, touchLocation));
+
+      LoadBars.add(new LoadBar(tubeModulus, tripodNumber, 0));
 
       effectSide0 = true;
     }
 
     if (touchLocation == 1 && effectSide1 == false) {
       timers.add(new Timer(tubeModulus, tripodNumber, touchLocation));
+
+      LoadBars.add(new LoadBar(tubeModulus, tripodNumber, 1));
 
       effectSide1 = true;
     }
@@ -68,11 +65,11 @@ class Tube {
       }
     }
 
-    for (int i = 0; i < blocks.size(); i++) {
-      Block block = blocks.get(i);
+    for (int i = 0; i < LoadBars.size(); i++) {
+      LoadBar loadbar = LoadBars.get(i);
 
-      if (block.touchLocation == touchLocation) {
-        blocks.remove(i);
+      if (loadbar.touchLocation == touchLocation) {
+        LoadBars.remove(i);
 
         if (touchLocation == 0) {
           effectSide0 = false;
@@ -86,29 +83,38 @@ class Tube {
 
   // Executed every frame, for updating continiously things
   void update() {
-    for (int i = 0; i < blocks.size(); i++) {
-      Block block = blocks.get(i);
+    for (int i = 0; i < LoadBars.size(); i++) {
+      LoadBar loadbar = LoadBars.get(i);
 
-      block.display();
+      loadbar.display();
+
+      if (loadbar.timeFinished()) {
+        LoadBars.remove(i);
+        
+        
+        
+        if (endAnimationSetting == 0){
+         addGlitter(); 
+        }
+      }
     }
 
     for (int i = glitterEffects.size() - 1; i >= 0; i--) {
       GlitterEffect glitterEffect = glitterEffects.get(i);
-      
+
       glitterEffect.update();
-      
-      if (!glitterEffect.timeFinished()){
+
+      if (!glitterEffect.timeFinished()) {
         glitterEffect.generate();
       }
-      
-      if (glitterEffect.animationFinished()){
+
+      if (glitterEffect.animationFinished()) {
         glitterEffects.remove(i);
       }
     }
   }
-  
-  
-  void addGlitter(){
+
+  void addGlitter() {
     glitterEffects.add(new GlitterEffect(this.tubeModulus, this.tripodNumber));
   }
 }
