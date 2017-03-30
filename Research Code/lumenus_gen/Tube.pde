@@ -69,6 +69,11 @@ class Tube {
       LoadBar loadbar = LoadBars.get(i);
 
       if (loadbar.touchLocation == touchLocation) {
+
+        if (loadbar.timeFinished() && endAnimationSetting == 1) {
+          addGlitter();
+        }
+
         LoadBars.remove(i);
 
         if (touchLocation == 0) {
@@ -89,12 +94,9 @@ class Tube {
       loadbar.display();
 
       if (loadbar.timeFinished()) {
-        LoadBars.remove(i);
-        
-        
-        
-        if (endAnimationSetting == 0){
-         addGlitter(); 
+        if (endAnimationSetting == 0) {
+          addGlitter();
+          LoadBars.remove(i);
         }
       }
     }

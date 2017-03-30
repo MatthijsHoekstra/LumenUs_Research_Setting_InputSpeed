@@ -9,9 +9,23 @@ import controlP5.*;
 //----------------------------------------------------------------------------------------------------------------------------
 
 int endAnimationSetting = 0; //Could be 0 or 1. 0 - End-animation starts after feedback time, 1 - End-animation starts after user releases tube
+String endAnimationSettingString;
 
 int feedbackSetting = 0; //This one is for controlling which feedback speed is set - will be connected to array
 //Check drive for corresponding speed
+int feedbackSpeed[] = {1500, 5000, 8000, 15000};
+
+
+int experimentNumber = -1; //4 possible options
+//Start number -1, because button start adds +1
+
+boolean displayGreenTransition = true;
+
+boolean startTimer = false;
+int startTimeTimer;
+int currentTimeTimer;
+
+int totalTimeTimer = 10000;
 
 
 //----------------------------------------------------------------------------------------------------------------------------
@@ -39,9 +53,10 @@ int[][] brokenTubes = {{}, {}, {}};
 PrintWriter logTestPerson;
 PrintWriter numberOfTotalPersons;
 
-String text;
+String testGroupNumberString;
+int testGroupNumber;
+
 ControlP5 cp5;
-int myColor = color(255);
 
 void setup() {
   size(1600, 880, OPENGL);
@@ -53,6 +68,8 @@ void setup() {
   for (int i=0; i< numTubes; i++) {
     tubes[i] = new Tube(i);
   }
+
+  addButtonsOnScreen();
 
   //drawRaster(); // drawRaster helps us with the LED mapping in ELM
 
@@ -89,43 +106,6 @@ void setup() {
   //numberOfTotalPersons.print(numberOfTestPersons + 1);
   //numberOfTotalPersons.flush(); // Writes the remaining data to the file
   //numberOfTotalPersons.close(); // Finishes the file
-  
-  cp5 = new ControlP5(this);
-
-  // knoppen
-  cp5.addButton("1,5 sec")
-    .setValue(1.5)
-    .setPosition(100, height-100)
-    .setSize(100, 19)
-    ;
-
-  cp5.addButton("5 sec")
-    .setValue(5)
-    .setPosition(205, height-100)
-    .setSize(100, 19)
-    ;
-
-  cp5.addButton("8 sec")
-    .setValue(8)
-    .setPosition(310, height-100)
-    .setSize(100, 19)
-    ;
-
-  cp5.addButton("15 sec")
-    .setValue(15)
-    .setPosition(415, height-100)
-    .setSize(100, 19)
-    ;
-    
-    // text input
-  cp5.addTextfield("group")
-  .setPosition(100, height-200)
-  .setSize(100, 50)
-  .setAutoClear(false);
-  
-  cp5.addBang("Submit")
-  .setPosition(220, height-200)
-  .setSize(100, 50);
 
   //numberOfTotalPersons.print(numberOfTestPersons + 1);
   //numberOfTotalPersons.flush(); // Writes the remaining data to the file
@@ -135,6 +115,14 @@ void setup() {
 void draw() {
 
   background(0);
+
+
+  researchOptions();
+
+  pushStyle();
+  fill(0, 0, 0, 150);
+  rect(0, height - 300, width, 300);
+  popStyle();
 
   for (int i=0; i<numTubes; i++) {
     tubes[i].update();
@@ -147,42 +135,67 @@ void draw() {
   drawRaster();
 
   //spout.sendTexture();
-  researchOptions();
 
   drawRaster();
 
   //brokenTubes();
 
   //spout.sendTexture();
-
-  println(y);
 }
 
 void researchOptions() {
 
-  switch(feedbackSetting) {
-  case 0:
+  if (startTimer) {
+    startTimeTimer = millis();
 
-    break;
+    startTimer = false;
+  }
 
-  case 1:
+  if (millis() > startTimeTimer + totalTimeTimer) {
+    displayGreenTransition = true;
+  }
+  
+  //For displaying the current time in experiment, linked to utility functions
+  if (!displayGreenTransition) {
+    currentTimeTimer = (millis() - startTimeTimer) / 1000;
+  } else {
+    currentTimeTimer = 0;
+  }
 
-    break;
 
-  case 2:
+  if (displayGreenTransition) {
+    pushStyle();
+    fill(0, 255, 0);
+    rect(0, 0, width, height);
+    popStyle();
+  } else {
+    switch (experimentNumber) {
+    case 0:
+      println("research 0");
+      feedbackSetting = 0;
+      break; 
 
-    break;
+    case 1:
+      feedbackSetting = 1;
+      println("research 1");
+      break;
 
-  case 3:
+    case 2:
+      feedbackSetting = 2;
+      println("research 2");
+      break;
 
-    break;
+    case 3:
+      feedbackSetting = 3;
+      println("research 3");
+      break;
+    }
   }
 }
 
 void keyPressed() {
 
   int tubeNumber = currentSelectedTube + currentSelectedTripod * 3;
-
 
   //Selecting system for adding objects
   if (key == CODED) {
@@ -251,10 +264,4 @@ void keyReleased() {
   if (key == '2') {
     tubes[tubeNumber].isUnTouched(1);
   }
-}
-
-void Submit() {
-  print ("group:");
-  text=cp5.get(Textfield.class, "group").getText();
-  print(text);
 }

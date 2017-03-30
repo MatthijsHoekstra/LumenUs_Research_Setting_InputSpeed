@@ -39,8 +39,8 @@ void drawRaster() {
 
 void ShowFrameRate() {
   pushStyle();
-  fill(200);
-  text(int(frameRate) + " " + currentSelectedTube + " " + currentSelectedTripod, 5, 16);
+  fill(255);
+  text(int(frameRate) + " " + currentSelectedTube + " " + currentSelectedTripod + " // Test Mode: " +  endAnimationSettingString + " // Current time experiment: " + currentTimeTimer + " // Current experiment: " + (experimentNumber + 1), 100, height - 250);
   popStyle();
 }
 
@@ -69,7 +69,7 @@ void selectingSystem() {
   pushStyle();
   noFill();
 
-  stroke(0, 255, 0);
+  stroke(255, 0, 0);
   rect(x-5, y-5, tubeLength+8, rectHeight+9);
 
   popStyle();
@@ -78,7 +78,7 @@ void selectingSystem() {
 
 void brokenTubes() {
   for (int i = 0; i < brokenTubes.length; i++) {
-    
+
     int tripod = brokenTubes[0][i];
     int tube = brokenTubes[1][i];
     int touchSide = brokenTubes[2][i];
@@ -89,9 +89,75 @@ void brokenTubes() {
 
     noStroke();
     fill(255, 0, 0);
-    rect((tubeLength/2)*touchSide , 0, tubeLength/2, rectHeight);
+    rect((tubeLength/2)*touchSide, 0, tubeLength/2, rectHeight);
 
     popStyle();
     popMatrix();
   }
+}
+
+void addButtonsOnScreen() {
+
+  cp5 = new ControlP5(this);
+
+  // knoppen
+  cp5.addButton("buttonEndGoalWhenAnimationFinished")
+    .setValue(0)
+    .setPosition(100, height-150)
+    .setSize(200, 19)
+    ;
+
+  cp5.addButton("buttonEndGoalWhenReleased")
+    .setValue(0)
+    .setPosition(350, height-150)
+    .setSize(200, 19)
+    ;
+
+  //cp5.addButton("8 sec")
+  //  .setValue(8)
+  //  .setPosition(310, height-100)
+  //  .setSize(100, 19)
+  //  ;
+
+  //cp5.addButton("15 sec")
+  //  .setValue(15)
+  //  .setPosition(415, height-100)
+  //  .setSize(100, 19)
+  //  ;
+
+  // text input
+  cp5.addTextfield("group")
+    .setPosition(100, height-225)
+    .setSize(100, 50)
+    .setAutoClear(false);
+
+  cp5.addBang("StartButtonPressed")
+    .setPosition(100, height-100)
+    .setSize(450, 50);
+}
+
+void StartButtonPressed() {
+  testGroupNumberString = cp5.get(Textfield.class, "group").getText();
+  
+  displayGreenTransition = false; 
+  
+  experimentNumber ++;
+  
+  startTimer = true;
+}
+
+public void buttonEndGoalWhenReleased(int i) {
+  endAnimationSetting = 1;
+  
+  endAnimationSettingString = "End-animation starts after user releases tube";
+
+  println(endAnimationSettingString);
+}
+
+public void buttonEndGoalWhenAnimationFinished(int i) {
+  endAnimationSetting = 0;  
+
+  endAnimationSettingString = "End-animation starts after feedback time";
+
+  println(endAnimationSettingString);
 }
