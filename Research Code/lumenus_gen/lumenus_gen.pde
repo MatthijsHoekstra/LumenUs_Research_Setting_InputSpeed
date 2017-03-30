@@ -1,8 +1,6 @@
-//Max
-//Janita
-
 import AULib.*;
-import spout.*;
+//import spout.*;
+import controlP5.*;
 
 int numTripods = 24;
 int numTubes = numTripods * 3;
@@ -19,10 +17,14 @@ int selectedTube, tubeNumber;
 
 Tube[] tubes = new Tube[numTubes];
 
-Spout spout;
+//Spout spout;
 
 PrintWriter logTestPerson;
 PrintWriter numberOfTotalPersons;
+
+String text;
+ControlP5 cp5;
+int myColor = color(255);
 
 void setup() {
   size(1600, 880, OPENGL);
@@ -53,7 +55,7 @@ void setup() {
   //}
 
 
-  spout = new Spout(this);
+  //spout = new Spout(this);
 
   String lines[] = loadStrings("data/logNumPeople/numberPersons.txt");
 
@@ -70,6 +72,44 @@ void setup() {
   numberOfTotalPersons.print(numberOfTestPersons + 1);
   numberOfTotalPersons.flush(); // Writes the remaining data to the file
   numberOfTotalPersons.close(); // Finishes the file
+  
+  cp5 = new ControlP5(this);
+
+  // knoppen
+  cp5.addButton("1,5 sec")
+    .setValue(1.5)
+    .setPosition(100, height*0.65)
+    .setSize(100, 19)
+    ;
+
+  cp5.addButton("5 sec")
+    .setValue(5)
+    .setPosition(205, height*0.65)
+    .setSize(100, 19)
+    ;
+
+  cp5.addButton("8 sec")
+    .setValue(8)
+    .setPosition(310, height*0.65)
+    .setSize(100, 19)
+    ;
+
+  cp5.addButton("15 sec")
+    .setValue(15)
+    .setPosition(415, height*0.65)
+    .setSize(100, 19)
+    ;
+    
+    // text input
+  cp5.addTextfield("group")
+  .setPosition(100, height*0.7)
+  .setSize(100, 50)
+  .setAutoClear(false);
+  
+  cp5.addBang("Submit")
+  .setPosition(220, height*0.7)
+  .setSize(100, 50);
+  
 }
 
 void draw() {
@@ -84,9 +124,9 @@ void draw() {
 
   selectingSystem();
 
-  //drawRaster();
+  drawRaster();
 
-  spout.sendTexture();
+  //spout.sendTexture();
 }
 
 void keyPressed() {
@@ -161,4 +201,10 @@ void keyReleased() {
   if (key == '2') {
     tubes[tubeNumber].isUnTouched(1);
   }
+}
+
+void Submit() {
+  print ("group:");
+  text=cp5.get(Textfield.class, "group").getText();
+  print(text);
 }

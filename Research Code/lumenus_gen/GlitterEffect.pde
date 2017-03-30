@@ -92,6 +92,7 @@ class Glitter {
 
       fill(randomColor, constrain(opacity, 0, 255));
       rect(x, 0, rectWidth, rectHeight);
+      
     } else {
 
       float currentTime = map(millis(), startTime + fadeInTime, startTime + livingTime + fadeInTime, 0, 1);
