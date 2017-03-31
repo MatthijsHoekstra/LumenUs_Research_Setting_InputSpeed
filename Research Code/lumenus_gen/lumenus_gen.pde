@@ -55,8 +55,8 @@ int selectedTube, tubeNumber;
 
 Tube[] tubes = new Tube[numTubes];
 
-//2D array which stores the broken tube: brokenTubes{{tripod}, {tube}, {side}}
-int[][] brokenTubes = {{}, {}, {}};
+//2D array which stores the broken tube: brokenTubes{{tube}, {side}}
+int[][] brokenTubes = {{}, {}};
 
 //Spout spout;
 
@@ -120,6 +120,8 @@ void setup() {
   //numberOfTotalPersons.print(numberOfTestPersons + 1);
   //numberOfTotalPersons.flush(); // Writes the remaining data to the file
   //numberOfTotalPersons.close(); // Finishes the file
+  
+  brokenTubes();
 }
 
 void draw() {
@@ -147,8 +149,6 @@ void draw() {
   //spout.sendTexture();
 
   drawRaster();
-
-  //brokenTubes();
 
   //spout.sendTexture();
 }

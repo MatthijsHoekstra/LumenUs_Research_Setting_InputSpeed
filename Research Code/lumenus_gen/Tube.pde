@@ -10,6 +10,9 @@ class Tube {
   private int tubeModulus;
   private int tripodNumber;
 
+  private boolean amIBroken0 = false;
+  private boolean amIBroken1 = false;
+
   ArrayList<LoadBar> LoadBars = new ArrayList<LoadBar>();
   ArrayList<Timer> timers = new ArrayList<Timer>();
 
@@ -27,7 +30,6 @@ class Tube {
   //Event when tube is touched
 
   void isTouched(int touchLocation) {
-
     if (touchLocation == 0 && effectSide0 == false) {
       timers.add(new Timer(tubeModulus, tripodNumber, touchLocation));
 
@@ -48,6 +50,7 @@ class Tube {
   //Event when tube is released
 
   void isUnTouched(int touchLocation) {
+
     for (int i = 0; i < timers.size(); i++) {
       Timer timer = timers.get(i);
 
@@ -64,6 +67,7 @@ class Tube {
         }
       }
     }
+
 
     for (int i = 0; i < LoadBars.size(); i++) {
       LoadBar loadbar = LoadBars.get(i);
@@ -88,6 +92,8 @@ class Tube {
 
   // Executed every frame, for updating continiously things
   void update() {
+    shutOffTheBroken();
+    
     for (int i = 0; i < LoadBars.size(); i++) {
       LoadBar loadbar = LoadBars.get(i);
 
@@ -118,5 +124,23 @@ class Tube {
 
   void addGlitter() {
     glitterEffects.add(new GlitterEffect(this.tubeModulus, this.tripodNumber));
+  }
+
+  void shutOffTheBroken() {
+    if (amIBroken0 == true || amIBroken1 == true) {
+      pushMatrix();
+      translate(tubeModulus * (numLEDsPerTube * rectWidth) + (tubeModulus * 20 + 20), tripodNumber * 21 + 21); 
+      pushStyle();
+      noStroke();
+      fill(255, 0, 0);
+      if (amIBroken0 == true) {
+        rect((tubeLength/2)*0, 0, tubeLength/2, rectHeight);
+      }
+      if (amIBroken1 == true) {
+        rect((tubeLength/2)*1, 0, tubeLength/2, rectHeight);
+      }
+      popStyle();
+      popMatrix();
+    }
   }
 }
