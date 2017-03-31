@@ -79,20 +79,15 @@ void selectingSystem() {
 void brokenTubes() {
   for (int i = 0; i < brokenTubes.length; i++) {
 
-    int tripod = brokenTubes[0][i];
-    int tube = brokenTubes[1][i];
-    int touchSide = brokenTubes[2][i];
+    int tripod = brokenTubes[0][i]/3;
+    int tube = brokenTubes[0][i];
+    int touchSide = brokenTubes[1][i];
 
-    pushMatrix();
-    translate(tube * (numLEDsPerTube * rectWidth) + (tube * 20 + 20), tripod * 21 + 21); 
-    pushStyle();
-
-    noStroke();
-    fill(255, 0, 0);
-    rect((tubeLength/2)*touchSide, 0, tubeLength/2, rectHeight);
-
-    popStyle();
-    popMatrix();
+    if (touchSide == 0) {
+      tubes[tube].amIBroken0 = true;
+    } else if (touchSide == 1) {
+      tubes[tube].amIBroken1 = true;
+    }
   }
 }
 
@@ -141,7 +136,6 @@ void StartButtonPressed() {
 
   testGroupNumber = int(testGroupNumberString);
 
-
   if (startExperiment == false) {
     String filename = testGroupNumber + "_" + endAnimationSetting + "__" + hour() + minute() + "_timing_research.txt";
 
@@ -150,7 +144,6 @@ void StartButtonPressed() {
     println("created log file");
     startExperiment = true;
   }
-
 
   displayGreenTransition = false; 
 

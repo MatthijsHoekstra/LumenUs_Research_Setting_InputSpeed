@@ -54,8 +54,8 @@ int selectedTube, tubeNumber;
 
 Tube[] tubes = new Tube[numTubes];
 
-//2D array which stores the broken tube: brokenTubes{{tripod}, {tube}, {side}}
-int[][] brokenTubes = {{}, {}, {}};
+//2D array which stores the broken tube: brokenTubes{{tube}, {side}}
+int[][] brokenTubes = {{}, {}};
 
 Spout spout;
 
@@ -94,7 +94,34 @@ void setup() {
   //  }
   //}
 
+
   spout = new Spout(this);
+
+  //spout = new Spout(this);
+  // spout = new Spout(this);
+
+  //String lines[] = loadStrings("data/logNumPeople/numberPersons.txt");
+
+  //int numberOfTestPersons = parseInt(lines[0]);
+
+  //int numberTestPerson = numberOfTestPersons + 1;
+
+  //String filename = numberTestPerson + "_" + hour() + minute() + "_timing_research.txt";
+
+  //logTestPerson = createWriter("data/" + filename); 
+
+  //numberOfTotalPersons = createWriter("data/numberPersons.txt");
+
+  //numberOfTotalPersons.print(numberOfTestPersons + 1);
+  //numberOfTotalPersons.flush(); // Writes the remaining data to the file
+  //numberOfTotalPersons.close(); // Finishes the file
+
+  //numberOfTotalPersons.print(numberOfTestPersons + 1);
+  //numberOfTotalPersons.flush(); // Writes the remaining data to the file
+  //numberOfTotalPersons.close(); // Finishes the file
+  
+  brokenTubes();
+
 }
 
 void draw() {
@@ -118,9 +145,17 @@ void draw() {
 
   drawRaster();
 
+
   //brokenTubes();
 
   spout.sendTexture();
+
+  //spout.sendTexture();
+
+  drawRaster();
+
+  //spout.sendTexture();
+
 }
 
 void researchOptions() {
