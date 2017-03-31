@@ -21,10 +21,7 @@ class LoadBar {
 
     startTime = millis();
     
-    livingTime = feedbackSpeed[feedbackSetting];
-
-    if (touchLocation == 0) {
-    }
+    livingTime = feedbackSpeed[feedbackSetting][testGroupNumber];
   }
 
   void display() {

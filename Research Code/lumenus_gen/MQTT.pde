@@ -43,6 +43,7 @@ void messageReceived(String topic, byte[] payload) {
     }
 
     if (payLoadReceived == 1) {
+      
       tubes[tubeNumberReceived].isTouched(sideTouchedReceived);
     }
 

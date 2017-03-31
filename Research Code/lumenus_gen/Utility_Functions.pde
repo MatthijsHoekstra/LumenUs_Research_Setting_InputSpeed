@@ -138,17 +138,32 @@ void addButtonsOnScreen() {
 
 void StartButtonPressed() {
   testGroupNumberString = cp5.get(Textfield.class, "group").getText();
-  
+
+  testGroupNumber = int(testGroupNumberString);
+
+
+  if (startExperiment == false) {
+    String filename = testGroupNumber + "_" + endAnimationSetting + "__" + hour() + minute() + "_timing_research.txt";
+
+    logTestPerson = createWriter("data/" + filename);
+
+    println("created log file");
+    startExperiment = true;
+  }
+
+
   displayGreenTransition = false; 
-  
+
   experimentNumber ++;
-  
+
+  logTestPerson.println("//-------------------------------------- experiment: " + experimentNumber + " , " + feedbackSpeed[feedbackSetting][testGroupNumber]);
+
   startTimer = true;
 }
 
 public void buttonEndGoalWhenReleased(int i) {
   endAnimationSetting = 1;
-  
+
   endAnimationSettingString = "End-animation starts after user releases tube";
 
   println(endAnimationSettingString);
