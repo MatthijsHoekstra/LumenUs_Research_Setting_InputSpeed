@@ -23,7 +23,7 @@ int feedbackSetting = 0; //This one is for controlling which feedback speed is s
   
 int feedbackSpeed[][] = 
 {
- {2000,2000,4000,4000,6000,6000},
+ {500,2000,4000,4000,6000,6000},
  {4000,6000,2000,6000,2000,4000},
  {6000,4000,6000,2000,4000,2000}
 };
@@ -246,19 +246,19 @@ void keyPressed() {
     }
   }
 
-  if (key == '9') {
-    for (int i=0; i<numTubes; i++) {
-      tubes[i].isTouched(0);
-      tubes[i].isTouched(1);
-    }
-  }
+  //if (key == '9') {
+  //  for (int i=0; i<numTubes; i++) {
+  //    tubes[i].isTouched(0);
+  //    tubes[i].isTouched(1);
+  //  }
+  //}
 
-  if (key == '0') {
-    for (int i=0; i<numTubes; i++) {
-      tubes[i].isUnTouched(0);
-      tubes[i].isUnTouched(1);
-    }
-  }
+  //if (key == '0') {
+  //  for (int i=0; i<numTubes; i++) {
+  //    tubes[i].isUnTouched(0);
+  //    tubes[i].isUnTouched(1);
+  //  }
+  //}
 
   if (key == 'w') {
     tubes[tubeNumber].isTouched(0);
