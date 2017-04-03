@@ -93,7 +93,7 @@ class Tube {
   // Executed every frame, for updating continiously things
   void update() {
     shutOffTheBroken();
-    
+
     for (int i = 0; i < LoadBars.size(); i++) {
       LoadBar loadbar = LoadBars.get(i);
 
@@ -132,7 +132,7 @@ class Tube {
       translate(tubeModulus * (numLEDsPerTube * rectWidth) + (tubeModulus * 20 + 20), tripodNumber * 21 + 21); 
       pushStyle();
       noStroke();
-      fill(255, 0, 0);
+      fill(255, 0, 0, 50);
       if (amIBroken0 == true) {
         rect((tubeLength/2)*0, 0, tubeLength/2, rectHeight);
       }

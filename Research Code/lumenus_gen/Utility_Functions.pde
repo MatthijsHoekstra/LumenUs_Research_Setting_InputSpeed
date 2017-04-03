@@ -79,7 +79,6 @@ void selectingSystem() {
 void brokenTubes() {
   for (int i = 0; i < brokenTubes.length; i++) {
 
-    int tripod = brokenTubes[0][i]/3;
     int tube = brokenTubes[0][i];
     int touchSide = brokenTubes[1][i];
 
@@ -133,6 +132,8 @@ void addButtonsOnScreen() {
 
 void StartButtonPressed() {
   testGroupNumberString = cp5.get(Textfield.class, "group").getText();
+  
+  println(testGroupNumberString);
 
   testGroupNumber = int(testGroupNumberString);
 
@@ -149,7 +150,7 @@ void StartButtonPressed() {
 
   experimentNumber ++;
 
-  logTestPerson.println("//-------------------------------------- experiment: " + experimentNumber + " , " + feedbackSpeed[feedbackSetting][testGroupNumber]);
+  logTestPerson.println("//-------------------------------------- experiment: " + experimentNumber + " , " + feedbackSpeed[experimentNumber][testGroupNumber]);
 
   startTimer = true;
 }

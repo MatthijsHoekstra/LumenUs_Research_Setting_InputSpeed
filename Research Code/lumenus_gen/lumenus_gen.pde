@@ -10,13 +10,17 @@ String endAnimationSettingString;
 
 int feedbackSetting = 0; //This one is for controlling which feedback speed is set - will be connected to array
 //Check drive for corresponding speed
-//int feedbackSpeed[] = {1500, 5000, 8000, 15000};
+//int feedbackSpeed[] = {2000, 4000, 8000, 6000};
 
 int feedbackSpeed[][] = 
-  {{1500, 1500, 1500, 1500, 1500, 1500, 5000, 5000, 5000, 5000, 5000, 5000, 8000, 8000, 8000, 8000, 8000, 8000, 15000, 15000, 15000, 15000, 15000, 15000}, 
-  {5000, 5000, 8000, 8000, 15000, 15000, 1500, 1500, 8000, 8000, 15000, 15000, 1500, 1500, 5000, 5000, 15000, 15000, 1500, 1500, 5000, 5000, 8000, 8000}, 
-  {8000, 15000, 5000, 15000, 5000, 8000, 8000, 15000, 1500, 15000, 1500, 8000, 5000, 15000, 1500, 15000, 1500, 5000, 5000, 8000, 1500, 8000, 1500, 5000}, 
-  {15000, 8000, 15000, 5000, 8000, 5000, 15000, 8000, 15000, 1500, 8000, 1500, 15000, 5000, 15000, 1500, 5000, 1500, 8000, 5000, 8000, 1500, 5000, 1500}};
+  {
+    
+  {2000, 2000, 2000, 2000, 2000, 2000, 4000, 4000, 4000, 4000, 4000, 4000, 8000, 8000, 8000, 8000, 8000, 8000, 6000, 6000, 6000, 6000, 6000, 6000}, 
+  {4000, 4000, 8000, 8000, 6000, 6000, 2000, 2000, 8000, 8000, 6000, 6000, 2000, 2000, 4000, 4000, 6000, 6000, 2000, 2000, 4000, 4000, 8000, 8000}, 
+  {8000, 6000, 4000, 6000, 4000, 8000, 8000, 6000, 2000, 6000, 2000, 8000, 4000, 6000, 2000, 6000, 2000, 4000, 4000, 8000, 2000, 8000, 2000, 4000}, 
+  {6000, 8000, 6000, 4000, 8000, 4000, 6000, 8000, 6000, 2000, 8000, 2000, 6000, 4000, 6000, 2000, 4000, 2000, 8000, 4000, 8000, 2000, 4000, 2000}
+
+  };
 
 int experimentNumber = -1; //4 possible options
 //Start number -1, because button start adds +1
@@ -27,7 +31,7 @@ boolean startTimer = false;
 int startTimeTimer;
 int currentTimeTimer;
 
-int totalTimeTimer = 1000;
+int totalTimeTimer = 60000;
 
 String testGroupNumberString;
 int testGroupNumber;
@@ -55,7 +59,7 @@ int selectedTube, tubeNumber;
 Tube[] tubes = new Tube[numTubes];
 
 //2D array which stores the broken tube: brokenTubes{{tube}, {side}}
-int[][] brokenTubes = {{}, {}};
+int[][] brokenTubes = {{7,18}, {1,1}};
 
 Spout spout;
 
@@ -81,18 +85,18 @@ void setup() {
 
   // Setup MQTT
 
-  //client = new MQTTClient(this);
-  //client.connect("mqtt://10.0.0.1", "processing");
-  ////client.subscribe("tripods/" + 0 + "/tube/" + 0 + "/side/" + 0);
+  client = new MQTTClient(this);
+  client.connect("mqtt://10.0.0.1", "processing");
+  //client.subscribe("tripods/" + 0 + "/tube/" + 0 + "/side/" + 0);
 
-  //for (int i = 0; i < numTripods; i++) {
-  //  for (int j = 0; j < 3; j++) {
-  //    for (int k = 0; k < 2; k++) {
-  //      //println(
-  //      client.subscribe("tripods/" + i + "/tube/" + j + "/side/" + k);
-  //    }
-  //  }
-  //}
+  for (int i = 0; i < numTripods; i++) {
+    for (int j = 0; j < 3; j++) {
+      for (int k = 0; k < 2; k++) {
+        //println(
+        client.subscribe("tripods/" + i + "/tube/" + j + "/side/" + k);
+      }
+    }
+  }
 
 
   spout = new Spout(this);
@@ -126,7 +130,7 @@ void setup() {
 
 void draw() {
 
-  background(0);
+  background(0,0,0);
 
   researchOptions();
 
@@ -143,18 +147,9 @@ void draw() {
 
   selectingSystem();
 
-  drawRaster();
-
-
-  //brokenTubes();
+  //drawRaster();
 
   spout.sendTexture();
-
-  //spout.sendTexture();
-
-  drawRaster();
-
-  //spout.sendTexture();
 
 }
 
@@ -178,7 +173,7 @@ void researchOptions() {
       opacityGreenTransition -= 5;
 
       pushStyle();
-      fill(0, 255, 0, opacityGreenTransition);
+      fill(255, 0, 0, opacityGreenTransition);
       rect(0, 0, width, height);
       popStyle();
     } else {
@@ -190,12 +185,12 @@ void researchOptions() {
 
 
   if (displayGreenTransition) {
-    if (opacityGreenTransition <= 255) {
+    if (opacityGreenTransition <= 100) {
       opacityGreenTransition += 5;
     }
 
     pushStyle();
-    fill(0, 255, 0, opacityGreenTransition);
+    fill(255, 0, 0, opacityGreenTransition);
     rect(0, 0, width, height);
     popStyle();
   } else {

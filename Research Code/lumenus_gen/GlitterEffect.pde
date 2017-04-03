@@ -4,7 +4,7 @@ class GlitterEffect {
 
   ArrayList<Glitter> glitters = new ArrayList<Glitter>();
 
-  int numberOfGlitters = 100;
+  int numberOfGlitters = 75;
 
   private int startTime, livingTime;
 
@@ -74,7 +74,7 @@ class Glitter {
     
     livingTime = int(random(100, 900));
 
-    randomColor = color(random(20, 255), random(20, 255), random(20, 255));
+    randomColor = color(random(0, 150), random(0, 150), random(0, 150));
 
     fadeInTime = int(random(350,500));
   }
