@@ -46,6 +46,9 @@ int opacityGreenTransition = 0;
 
 boolean startExperiment = false;
 
+//2D array which stores the broken tube: brokenTubes{{tube}, {side}}`
+int[][] brokenTubes = {{7,18, 0, 0, 6, 6, 5}, {1, 1, 0, 1, 0, 1, 0}};
+
 
 //----------------------------------------------------------------------------------------------------------------------------
 
@@ -64,8 +67,7 @@ int selectedTube, tubeNumber;
 
 Tube[] tubes = new Tube[numTubes];
 
-//2D array which stores the broken tube: brokenTubes{{tube}, {side}}
-int[][] brokenTubes = {{7,18}, {1,1}};
+
 
 Spout spout;
 

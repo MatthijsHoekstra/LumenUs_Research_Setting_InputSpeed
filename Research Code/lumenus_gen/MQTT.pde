@@ -54,7 +54,6 @@ void messageReceived(String topic, byte[] payload) {
       } else if (tubes[tubeNumberReceived].amIBroken1 == false && sideTouchedReceived == 1) {
         tubes[tubeNumberReceived].isTouched(1);
       }
-
     }
   }
 

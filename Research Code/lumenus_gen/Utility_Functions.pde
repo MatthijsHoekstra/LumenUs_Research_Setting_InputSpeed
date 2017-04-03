@@ -77,10 +77,12 @@ void selectingSystem() {
 }
 
 void brokenTubes() {
-  for (int i = 0; i < brokenTubes.length; i++) {
+  for (int i = 0; i < brokenTubes[0].length; i++) {
 
     int tube = brokenTubes[0][i];
     int touchSide = brokenTubes[1][i];
+    
+    println(tube + "," + touchSide);
 
     if (touchSide == 0) {
       tubes[tube].amIBroken0 = true;
